@@ -1,0 +1,87 @@
+/* Golden Bug Games: the whole site's look, shared by every page. The sky
+   of Ribbit Rush (a night sky in dark mode), ink-bordered paper cards, gold
+   accents. No web fonts or outside requests. */
+:root {
+  --sky-top: #dff4f9; --sky-bottom: #a9dbe6;
+  --ink: #2e1f40; --muted: #5b4f6b; --paper: #fffdf6;
+  --gold: #feae34; --gold-deep: #c97a0b; --gold-soft: #fff1c9;
+  --cloud: rgba(255, 255, 255, .75);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --sky-top: #1f2a3f; --sky-bottom: #10151f;
+    --ink: #f4efe3; --muted: #b9b0c8; --paper: #232d42;
+    --gold-soft: #4a3a17; --cloud: rgba(255, 255, 255, .06);
+  }
+}
+* { box-sizing: border-box; }
+html { background: var(--sky-bottom); }
+body {
+  margin: 0; min-height: 100vh; color: var(--ink);
+  font: 17px/1.55 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: linear-gradient(var(--sky-top), var(--sky-bottom)) fixed;
+  position: relative; overflow-x: hidden;
+}
+/* soft clouds behind everything */
+body::before, body::after {
+  content: ""; position: absolute; z-index: 0; pointer-events: none;
+  width: 220px; height: 60px; border-radius: 60px; background: var(--cloud);
+  box-shadow: 70px -24px 0 8px var(--cloud), 140px 0 0 -4px var(--cloud);
+}
+body::before { top: 70px; left: -40px; }
+body::after { top: 260px; right: 40px; transform: scale(.7); }
+main { position: relative; z-index: 1; max-width: 46rem; margin: 0 auto; padding: 3rem 16px 3rem; }
+a { color: var(--ink); }
+
+.hero { text-align: center; }
+.hero img { width: 112px; height: 112px; image-rendering: pixelated; }
+h1 { margin: .3rem 0 .2rem; font-size: clamp(2.2rem, 8vw, 3.4rem); font-weight: 900; letter-spacing: -.02em; line-height: 1.05; }
+h1 span { color: var(--gold-deep); }
+@media (prefers-color-scheme: dark) { h1 span { color: var(--gold); } }
+.tagline { margin: 0; font-size: 1.25rem; font-style: italic; color: var(--muted); }
+.about { max-width: 34rem; margin: 1.6rem auto 0; color: var(--muted); }
+
+h2.section { margin: 3rem 0 1rem; font-size: .9rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+
+.game {
+  background: var(--paper); border: 4px solid var(--ink); border-radius: 16px;
+  box-shadow: 6px 6px 0 var(--ink); overflow: hidden;
+}
+.game > img { display: block; width: 100%; height: auto; image-rendering: pixelated; border-bottom: 4px solid var(--ink); }
+.game .body { padding: 1.2rem 1.4rem 1.4rem; }
+.game h3 { margin: 0 0 .3rem; font-size: 1.7rem; font-weight: 900; }
+.game p { margin: .4rem 0 1rem; }
+.chips { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 1.1rem; padding: 0; list-style: none; }
+.chips li { font-size: .85rem; font-weight: 700; padding: .2rem .7rem; border-radius: 999px; background: var(--gold-soft); border: 2px solid var(--gold); }
+.links { display: flex; flex-wrap: wrap; gap: .7rem; }
+.links a {
+  font-weight: 800; text-decoration: none; padding: .55rem 1.1rem; border-radius: 12px;
+  border: 3px solid var(--ink); background: var(--gold); color: #2e1f40; box-shadow: 3px 3px 0 var(--ink);
+  transition: transform .08s ease, box-shadow .08s ease;
+}
+.links a:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--ink); }
+.links a:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ink); }
+.links a.quiet { background: var(--paper); color: var(--ink); }
+
+footer { margin-top: 3.5rem; text-align: center; color: var(--muted); font-size: .95rem; }
+footer img { width: 24px; height: 24px; image-rendering: pixelated; vertical-align: -6px; }
+
+/* The small home link at the top of every inner page */
+.home { margin: 0 0 1.4rem; }
+.home a { display: inline-flex; align-items: center; gap: .45em; font-weight: 800; text-decoration: none; color: var(--ink); }
+.home img { image-rendering: pixelated; }
+
+/* An inner page's text, on a paper card */
+.page {
+  background: var(--paper); border: 4px solid var(--ink); border-radius: 16px;
+  box-shadow: 6px 6px 0 var(--ink); padding: 1.6rem 1.6rem 1.8rem;
+}
+.page h1 { font-size: clamp(1.8rem, 6vw, 2.4rem); color: var(--ink); margin: 0 0 .2rem; }
+.page h2 { font-size: 1.25rem; margin: 1.8em 0 .5em; padding-top: .6em; border-top: 3px dashed var(--gold); }
+.page .meta { color: var(--muted); margin: 0 0 1.4em; }
+.page a { color: var(--gold-deep); font-weight: 600; }
+@media (prefers-color-scheme: dark) { .page a { color: var(--gold); } }
+.page table { border-collapse: collapse; width: 100%; margin: .5em 0 1em; }
+.page th, .page td { text-align: left; vertical-align: top; padding: .45em .6em; border-bottom: 2px solid var(--gold-soft); }
+.page th { font-size: .9rem; color: var(--muted); font-weight: 700; }
+@media (max-width: 480px) { .page { padding: 1.2rem 1.1rem 1.4rem; } .page th, .page td { padding: .4em .35em; } }
