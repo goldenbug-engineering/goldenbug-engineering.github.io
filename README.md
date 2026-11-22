@@ -6,4 +6,6 @@ The Golden Bug Games website, served by GitHub Pages at https://goldenbug-engine
 - `ribbit-rush/privacy/`: Ribbit Rush's privacy policy, linked from its Google Play listing. **Its source is `docs/privacy-policy.html` in the Ribbit Rush repository**: change it there first, then copy it here (only the text between its `<main>` tags; this copy wraps it in the site's head, home link, `<article class="page">` and footer, and takes its look from `site.css`), and move the effective date whenever what the game collects changes.
 - `ribbit-rush/support/`: Ribbit Rush's support page (the listing's website).
 
+- `googleb524753b5ead26a8.html`: proves to Google (Search Console) that this site is ours, which the Ribbit Rush Cloud project's OAuth branding needs for its home page link. Keep it: removing it un-verifies the site.
+
 Plain static HTML, no build step. `.nojekyll` tells Pages to serve the files as they are.
